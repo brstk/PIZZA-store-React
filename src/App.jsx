@@ -4,7 +4,11 @@ import Header from './components/Header';
 import PizzaBlock from './components/PizzaBlock';
 import Sort from './components/Sort';
 
+import pizzas from './assets/pizzas.json';
+
 import './scss/app.scss';
+
+console.log(pizzas);
 
 export default function App() {
   return (
@@ -18,13 +22,11 @@ export default function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <PizzaBlock title="Мексиканская" price="500" />
-            <PizzaBlock title="Гавайская" price="450" />
-            <PizzaBlock title="Маргарита" price="390" />
-            <PizzaBlock title="Ветчина и грибы" price="450" />
-            <PizzaBlock title="Грибная с трюфельным маслом" price="540" />
-            <PizzaBlock title="Вегитарианская" price="420" />
-
+            {
+              pizzas.map((pizza) => (
+                <PizzaBlock pizza={pizza} key={pizza?.id} />
+              ))
+            }
           </div>
         </div>
       </div>

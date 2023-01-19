@@ -1,40 +1,49 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
-export default function PizzaBlock({ title, price }) {
-  const [pizzaCount, setPizzaCount] = React.useState(0);
-
-  const addHandler = () => {
-    setPizzaCount(pizzaCount + 1);
-  };
+export default function PizzaBlock({ pizza }) {
+  const [activSize, setActivSize] = React.useState(0);
+  const [activType, setActivType] = React.useState(0);
 
   return (
     <div className="pizza-block">
       <img
         className="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        src={pizza?.imageUrl}
         alt="Pizza"
       />
-      <h4 className="pizza-block__title">{title}</h4>
+      <h4 className="pizza-block__title">{pizza?.title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          <li className="active">тонкое</li>
-          <li>традиционное</li>
+          {
+          pizza?.types.map((type, i) => (
+            <li onClick={() => setActivType(i)} className={activType === i ? 'active' : ''}>{type === 1 ? 'Традиционное' : 'Тонкое'}</li>))
+          }
         </ul>
         <ul>
-          <li className="active">26 см.</li>
-          <li>30 см.</li>
-          <li>40 см.</li>
+          {
+          pizza?.sizes.map((size, i) => (
+            <li onClick={() => setActivSize(i)} className={activSize === i ? 'active' : ''}>
+              {size}
+              {' '}
+              см.
+              {' '}
+            </li>
+          ))
+          }
+
         </ul>
       </div>
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">
           от
           {' '}
-          {price}
+          {pizza?.price}
           {' '}
           ₽
         </div>
-        <button onClick={addHandler} type="button" className="button button--outline button--add">
+        <button type="button" className="button button--outline button--add">
           <svg
             width="12"
             height="12"
@@ -48,7 +57,7 @@ export default function PizzaBlock({ title, price }) {
             />
           </svg>
           <span>Добавить</span>
-          <i>{pizzaCount}</i>
+          <i>0</i>
         </button>
       </div>
     </div>

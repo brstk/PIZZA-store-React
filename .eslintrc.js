@@ -22,5 +22,7 @@ module.exports = {
   ],
   rules: {
     'space-before-blocks': 0,
+    'no-console': 0,
+    'react/prop-types': 0,
   },
 };
