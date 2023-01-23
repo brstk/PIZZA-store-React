@@ -7,10 +7,13 @@ import Sort from './components/Sort';
 import './scss/app.scss';
 
 export default function App() {
-  const pizzas = fetch('https://63cec708d2e8c29a9bdeaf78.mockapi.io/items')
-    .then((res) => res.json())
-    .then((json) => console.log(json));
+  const [pizzas, setPizzas] = React.useState([]);
 
+  React.useEffect(() => {
+    fetch('https://63cec708d2e8c29a9bdeaf78.mockapi.io/items')
+      .then((res) => res.json())
+      .then((data) => setPizzas(data));
+  }, []);
   return (
     <div className="wrapper">
       <Header />
