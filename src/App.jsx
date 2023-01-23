@@ -4,13 +4,13 @@ import Header from './components/Header';
 import PizzaBlock from './components/PizzaBlock';
 import Sort from './components/Sort';
 
-import pizzas from './assets/pizzas.json';
-
 import './scss/app.scss';
 
-console.log(pizzas);
-
 export default function App() {
+  const pizzas = fetch('https://63cec708d2e8c29a9bdeaf78.mockapi.io/items')
+    .then((res) => res.json())
+    .then((json) => console.log(json));
+
   return (
     <div className="wrapper">
       <Header />
