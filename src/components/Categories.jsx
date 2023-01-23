@@ -20,7 +20,7 @@ export default function Categories(){
         {
         categories.map((value, i) => (
 
-          <li onClick={() => onClickCategory(i)} className={activIndex === i ? 'active' : ''}>{value}</li>
+          <li key={value} onClick={() => onClickCategory(i)} className={activIndex === i ? 'active' : ''}>{value}</li>
         ))
         }
 

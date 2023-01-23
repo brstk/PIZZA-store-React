@@ -18,13 +18,13 @@ export default function PizzaBlock({ pizza }) {
         <ul>
           {
           pizza?.types.map((type, i) => (
-            <li onClick={() => setActivType(i)} className={activType === i ? 'active' : ''}>{type === 1 ? 'Традиционное' : 'Тонкое'}</li>))
+            <li key={type} onClick={() => setActivType(i)} className={activType === i ? 'active' : ''}>{type === 1 ? 'Традиционное' : 'Тонкое'}</li>))
           }
         </ul>
         <ul>
           {
           pizza?.sizes.map((size, i) => (
-            <li onClick={() => setActivSize(i)} className={activSize === i ? 'active' : ''}>
+            <li key={size} onClick={() => setActivSize(i)} className={activSize === i ? 'active' : ''}>
               {size}
               {' '}
               см.
