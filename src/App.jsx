@@ -31,7 +31,7 @@ export default function App() {
           <div className="content__items">
             {
               isLoading
-                ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+                ? [...new Array(6)].map((_) => (<Skeleton key={_} />))
                 : pizzas.map((pizza) => (
                   <PizzaBlock pizza={pizza} key={pizza?.id} />
                 ))
