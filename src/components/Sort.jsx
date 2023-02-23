@@ -44,7 +44,6 @@ export default function Sort(){
               {name}
             </li>
           ))}
-          )
 
         </ul>
         )
