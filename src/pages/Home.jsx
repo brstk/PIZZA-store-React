@@ -15,8 +15,11 @@ export default function Home() {
       .then((data) => setPizzas(data));
     setIsLoading(false);
   }, []);
+  // чтоб когда нажимаешь  'назад', страница отображалась сверху
+  // window.scrollTo(0, 0);
   return (
-    <>
+    <div className="container">
+
       <div className="content__top">
         <Categories />
         <Sort />
@@ -31,6 +34,6 @@ export default function Home() {
                 ))
             }
       </div>
-    </>
+    </div>
   );
 }
