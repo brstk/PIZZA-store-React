@@ -10,7 +10,7 @@ export default function Categories({ activIndex, setActivIndex }){
   const onClickCategory = (index) => {
     setActivIndex(index);
   };
-  console.log(setActivIndex);
+
   return (
     <div className="categories">
       <ul>

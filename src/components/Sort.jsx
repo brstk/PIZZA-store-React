@@ -6,8 +6,10 @@ import React from 'react';
 export default function Sort({ selected, setSelected }){
   const [open, setOpen] = React.useState(false);
 
-  const list = ['популярности', 'цене', 'алфавиту'];
-  const sortName = list[selected];
+  const list = [{ name: 'популярности', sortProperty: 'rating' },
+    { name: 'цене', sortProperty: 'price' },
+    { name: 'алфавиту', sortProperty: 'title' }];
+  // const sortName = list[selected]?.name;
 
   const onClickListItem = (i) => {
     setSelected(i);
@@ -29,19 +31,19 @@ export default function Sort({ selected, setSelected }){
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{sortName}</span>
+        <span onClick={() => setOpen(!open)}>{selected.name}</span>
       </div>
       <div className="sort__popup">
         {
         open && (
         <ul>
-          {list.map((name, i) => (
+          {list.map((obj) => (
             <li
-              key={name}
-              onClick={() => onClickListItem(i)}
-              className={selected === i ? 'active' : ''}
+              key={obj.name}
+              onClick={() => onClickListItem(obj)}
+              className={selected === obj.sortProperty ? 'active' : ''}
             >
-              {name}
+              {obj?.name}
             </li>
           ))}
 
