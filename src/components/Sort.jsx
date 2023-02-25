@@ -3,9 +3,9 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
-export default function Sort(){
+export default function Sort({ selected, setSelected }){
   const [open, setOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState(0);
+
   const list = ['популярности', 'цене', 'алфавиту'];
   const sortName = list[selected];
 

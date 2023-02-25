@@ -2,9 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
 
-export default function Categories(){
-  const [activIndex, setActivIndex] = React.useState(0);
-
+export default function Categories({ activIndex, setActivIndex }){
   const categories = [
     'Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые',
   ];
@@ -12,7 +10,7 @@ export default function Categories(){
   const onClickCategory = (index) => {
     setActivIndex(index);
   };
-
+  console.log(setActivIndex);
   return (
     <div className="categories">
       <ul>

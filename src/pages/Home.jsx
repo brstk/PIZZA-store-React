@@ -8,6 +8,10 @@ export default function Home() {
   const [pizzas, setPizzas] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(true);
+  // state для категорий(ниже передаем пропсами)
+  const [categoryId, setCategoryId] = React.useState(0);
+  // state для сортировки(ниже передаем пропсами)
+  const [sortType, setSortType] = React.useState(0);
 
   React.useEffect(() => {
     fetch('https://63cec708d2e8c29a9bdeaf78.mockapi.io/items')
@@ -21,8 +25,9 @@ export default function Home() {
     <div className="container">
 
       <div className="content__top">
-        <Categories />
-        <Sort />
+        {/* в стрелочную функцию попадает в i, выбранная нами категория в компоненте categories */}
+        <Categories activIndex={categoryId} setActivIndex={(i) => setCategoryId(i)} />
+        <Sort selected={sortType} setSelected={setSortType} />
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
