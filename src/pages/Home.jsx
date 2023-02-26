@@ -1,10 +1,13 @@
+/* eslint-disable max-len */
 import React from 'react';
+
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
 import PizzaBlock from '../components/PizzaBlock';
 import Skeleton from '../components/PizzaBlock/Skeleton';
+import Pagination from '../components/Pagination';
 
-export default function Home() {
+export default function Home({ searchInputValue }) {
   const [pizzas, setPizzas] = React.useState([]);
 
   const [isLoading, setIsLoading] = React.useState(true);
@@ -17,13 +20,27 @@ export default function Home() {
 
   React.useEffect(() => {
     setIsLoading(true);
-    fetch(`https://63cec708d2e8c29a9bdeaf78.mockapi.io/items?${categoryId > 0 ? `category=${categoryId}` : ''}&sortBy=${sortType.sortProperty}`)
+
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    const search = searchInputValue ? `&search=${searchInputValue}` : '';
+
+    fetch(`https://63cec708d2e8c29a9bdeaf78.mockapi.io/items?${category}&sortBy=${sortType.sortProperty}${search}`)
       .then((res) => res.json())
       .then((data) => setPizzas(data));
     setIsLoading(false);
     // чтоб когда нажимаешь  'назад', страница отображалась сверху
   // window.scrollTo(0, 0);
-  }, [categoryId, sortType]);
+  }, [categoryId, sortType, searchInputValue]);
+
+  // прежде чем отрендерить все пиццы проверяем с помощью filter() перед .map() и отрисовываем
+  // если есть совпадения с тембчто ввели в инпуте (на фронте).Удобно,если статичный массив с бэка прилетает
+  // .filter((val) => (
+  // val.title.toLowerCase().includes(searchInputValue.toLowerCase())))
+
+  const pizzasRender = pizzas.map((pizza) => (
+    <PizzaBlock pizza={pizza} key={pizza?.id} />));
+
+  const skeleton = [...new Array(6)].map((_) => (<Skeleton key={_} />));
 
   return (
     <div className="container">
@@ -37,12 +54,12 @@ export default function Home() {
       <div className="content__items">
         {
               isLoading
-                ? [...new Array(6)].map((_) => (<Skeleton key={_} />))
-                : pizzas.map((pizza) => (
-                  <PizzaBlock pizza={pizza} key={pizza?.id} />
-                ))
+                ? skeleton
+                : pizzasRender
+
             }
       </div>
+      <Pagination />
     </div>
   );
 }

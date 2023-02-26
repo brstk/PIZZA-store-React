@@ -1,0 +1,34 @@
+.root {
+  li{
+    display: inline-block;
+    
+
+    &:hover {
+      background-color: palegreen;
+    }
+     
+    a {
+      color:darkgreen;
+      font:bolder;
+    }
+  }
+
+  a {
+    display: inline-block;
+    text-align: center;
+    width: 45px;
+    line-height: 42px;
+    height: 45px;
+   
+    border: 1px solid #666;
+    border-radius: 30px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  // : global {
+  //   .previous {
+  //     background-color: red;
+  //   }
+  // }
+}
