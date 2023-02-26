@@ -1,19 +1,22 @@
 .root {
   position: relative;
+  
 
 }
 
 .input {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px, 20px;
-  width: 400px;
+  padding-left: 45px;
+  width: 300px;
   border-radius: 12px;
   min-height: 45px;
   font-size: 16px;
-  padding-left: 45px;
+  transition: all 0.15s ease-in-out;
 
   &:focus {
     border: 1px solid rgba(0, 0, 0, 0.3);
+    width: 400px;
   }
 }
 
@@ -24,4 +27,17 @@
   position: absolute;
   left: 5px;
   top: 5px;
+}
+
+.clearIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.3;
+  position:absolute;
+  right: 15px;
+  top: 15px;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }

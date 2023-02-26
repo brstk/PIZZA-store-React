@@ -2,10 +2,15 @@ import React from 'react';
 
 import styles from './Search.module.scss';
 
-export default function Search() {
+export default function Search({ searchInputValue, setSearchInputValue }) {
   return (
     <div className={styles.root}>
-      <input className={styles.input} placeholder="Найди свою пиццу здесь..." />
+      <input
+        value={searchInputValue}
+        onChange={(e) => setSearchInputValue(e.target.value)}
+        className={styles.input}
+        placeholder="Найди свою пиццу здесь..."
+      />
       <svg
         className={styles.icon}
         enableBackground="new 0 0 64 64"
@@ -26,6 +31,19 @@ export default function Search() {
           </g>
         </g>
       </svg>
+      {/* // если в инпуте что-то есть - рендери close */}
+      { searchInputValue
+        && (
+        <svg
+          onClick={() => setSearchInputValue('')}
+          className={styles.clearIcon}
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
+
+        </svg>
+        )}
     </div>
   );
 }

@@ -8,9 +8,13 @@ import NotFound from './pages/NotFound';
 import './scss/app.scss';
 
 export default function App() {
+  const [searchInputValue, setSearchInputValue] = React.useState('');
+
+  console.log(searchInputValue, '<=============== INPUT');
+
   return (
     <div className="wrapper">
-      <Header />
+      <Header searchInputValue={searchInputValue} setSearchInputValue={setSearchInputValue} />
       <div className="content">
 
         <Routes>

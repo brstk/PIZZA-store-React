@@ -24,7 +24,7 @@ export default function Home() {
     // чтоб когда нажимаешь  'назад', страница отображалась сверху
   // window.scrollTo(0, 0);
   }, [categoryId, sortType]);
-  console.log(categoryId, 'sortType', sortType);
+
   return (
     <div className="container">
 
