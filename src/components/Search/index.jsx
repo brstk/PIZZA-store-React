@@ -1,8 +1,13 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 
 import styles from './Search.module.scss';
 
-export default function Search({ searchInputValue, setSearchInputValue }) {
+import { SearchContext } from '../../App';
+
+export default function Search() {
+  const { searchInputValue, setSearchInputValue } = React.useContext(SearchContext);
+
   return (
     <div className={styles.root}>
       <input
