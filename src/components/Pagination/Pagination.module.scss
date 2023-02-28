@@ -2,15 +2,6 @@
   li{
     display: inline-block;
     
-
-    &:hover {
-      background-color: palegreen;
-    }
-     
-    a {
-      color:darkgreen;
-      font:bolder;
-    }
   }
 
   a {
@@ -24,11 +15,26 @@
     border-radius: 30px;
     margin-right: 10px;
     cursor: pointer;
+    color:darkgreen;
+    font:bolder;
+
+
+    &:hover {
+      background-color: palegreen;
+      font-size: 20px;
+    }
+     
+    a {
+      
+    }
   }
 
-  // : global {
-  //   .previous {
-  //     background-color: red;
-  //   }
-  // }
+  :global {
+    .selected {
+      a{
+        background-color: palegreen;
+        font-size: 20px;
+      }   
+     }
+  }
 }

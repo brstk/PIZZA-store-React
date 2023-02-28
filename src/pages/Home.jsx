@@ -9,7 +9,9 @@ import Pagination from '../components/Pagination';
 
 export default function Home({ searchInputValue }) {
   const [pizzas, setPizzas] = React.useState([]);
-
+  // создаем state для пагинации
+  const [currentPage, setCurrentPage] = React.useState(1);
+  // state для отображения skeletona
   const [isLoading, setIsLoading] = React.useState(true);
   // state для категорий(ниже передаем пропсами)
   const [categoryId, setCategoryId] = React.useState(0);
@@ -24,13 +26,13 @@ export default function Home({ searchInputValue }) {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
     const search = searchInputValue ? `&search=${searchInputValue}` : '';
 
-    fetch(`https://63cec708d2e8c29a9bdeaf78.mockapi.io/items?${category}&sortBy=${sortType.sortProperty}${search}`)
+    fetch(`https://63cec708d2e8c29a9bdeaf78.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortType.sortProperty}${search}`)
       .then((res) => res.json())
       .then((data) => setPizzas(data));
     setIsLoading(false);
     // чтоб когда нажимаешь  'назад', страница отображалась сверху
   // window.scrollTo(0, 0);
-  }, [categoryId, sortType, searchInputValue]);
+  }, [categoryId, sortType, searchInputValue, currentPage]);
 
   // прежде чем отрендерить все пиццы проверяем с помощью filter() перед .map() и отрисовываем
   // если есть совпадения с тембчто ввели в инпуте (на фронте).Удобно,если статичный массив с бэка прилетает
@@ -40,7 +42,7 @@ export default function Home({ searchInputValue }) {
   const pizzasRender = pizzas.map((pizza) => (
     <PizzaBlock pizza={pizza} key={pizza?.id} />));
 
-  const skeleton = [...new Array(6)].map((_) => (<Skeleton key={_} />));
+  const skeleton = [...new Array(4)].map((_) => (<Skeleton key={_} />));
 
   return (
     <div className="container">
@@ -59,7 +61,7 @@ export default function Home({ searchInputValue }) {
 
             }
       </div>
-      <Pagination />
+      <Pagination onChangePage={(number) => setCurrentPage(number)} />
     </div>
   );
 }
